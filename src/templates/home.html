@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Diary Book - Home{% endblock %} 
+{% load static%} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/home.css'%}" />
+{% endblock %} {% block content %}
+
+<div class="w-100 h-100 text-bg-dark">
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="mb-auto">
+      <div>
+        <h3 class="float-md-start mb-0">DIARY BOOK</h3>
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+          <a
+            class="nav-link fw-bold py-1 px-0 active"
+            aria-current="page"
+            href="{% url 'home' %}"
+            >Home</a
+          >
+          <a class="nav-link fw-bold py-1 px-0" href="{% url 'register' %}">Register</a>
+          <a class="nav-link fw-bold py-1 px-0" href="{% url 'login' %}">Login</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="px-3">
+      <h1>Diary Book</h1>
+      <p class="lead">
+        Cover is a one-page template for building simple and beautiful home
+        pages. Download, edit the text, and add your own fullscreen background
+        photo to make it your own.
+      </p>
+      <p class="lead">
+        <a
+          href="{% url 'about' %}"
+          class="btn btn-lg btn-secondary fw-bold border-white bg-white"
+          >Learn more</a
+        >
+      </p>
+    </main>
+
+    <footer class="mt-auto text-white-50">
+      <p>
+        Copyright reserved. at
+        <a href="https://weblink.co.com/" class="text-white">Weblink</a> by,
+        <a href="https://weblink.co.com/" class="text-white">Sepehr</a>
+      </p>
+    </footer>
+  </div>
+</div>
+{% endblock %}
