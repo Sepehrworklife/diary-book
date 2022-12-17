@@ -5,27 +5,17 @@
 {% endblock %} {% block content %}
 
 <main class="form-signin w-100 m-auto">
-  <form>
+  <form method="POST">
+    {% csrf_token %}
     <h2 class="h3 mb-3 fw-normal">Please sign in</h2>
-    <div class="form-floating">
-      <input
-        type="email"
-        class="form-control"
-        id="floatingInput"
-        placeholder="name@example.com"
-      />
-      <label for="floatingInput">Email address</label>
-    </div>
-    <div class="form-floating">
-      <input
-        type="password"
-        class="form-control"
-        id="floatingPassword"
-        placeholder="Password"
-      />
-      <label for="floatingPassword">Password</label>
-    </div>
-
+    {% for field in form %}
+     {% if field.errors %}
+      <div class="alert alert-danger">{{  field.errors }}</div>
+     {% endif %}
+    {% endfor %}
+    {% for field in form %}
+    {{field}}
+    {% endfor %}
     <div class="checkbox mb-3">
       <label> <input type="checkbox" value="remember-me" /> Remember me </label>
     </div>

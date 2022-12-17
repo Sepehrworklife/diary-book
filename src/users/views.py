@@ -1,12 +1,26 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.http.request import HttpRequest
-from users.forms import RegisterForm
-from users.models import UsersORM
+from users.forms import RegisterForm , LoginForm
+from users.models import UsersORM , Users
 from users.utils import encrtypt_password
 
 
 def login(request: HttpRequest) -> render:
-    return render(request, "auth/login.html", {})
+    form = LoginForm()
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+             email = form.cleaned_data["email"]
+             password = encrtypt_password(form.cleaned_data["password"])
+             user = Users.objects.all().filter(email=email,password=password)
+             for users in user:
+                 if users.email==email and users.password==password:
+                     return render(request, "auth/register.html")
+                 else:
+                     form.add_error("email or password incorrect")
+                 
+    
+    return render(request, "auth/login.html", {"form" : form})
 
 
 def register(request: HttpRequest) -> render:
