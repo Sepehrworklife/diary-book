@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block title %}Diary Book - Login{% endblock %}
+{% load static%}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <nav class="mb-5 navbar navbar-expand-lg bg-primary navbar-dark" style="border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;padding-block: 1rem;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Diary BOOK</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">New</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">List</a>
+              </li>
+            </ul>
+            
+          </div>
+        </div>
+      </nav>    
+    {% block container %}{% endblock %}
+</div>
+
+{% endblock %}
