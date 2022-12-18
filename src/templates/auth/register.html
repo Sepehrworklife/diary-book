@@ -8,9 +8,6 @@
   <form method="POST">
     {% csrf_token %}
     <h2 class="h3 mb-3 fw-normal">Register To Our App</h2>
-    {% if request.GET.okay %}
-      <div class="alert alert-success"> You have registered successfully.</div>
-    {% endif %}
     {% for field in form %}
       {% if field.errors %}
         <div class="alert alert-danger">{{ field.errors }}</div>
@@ -19,7 +16,8 @@
     {% for field in form %} 
       {{ field }} 
     {% endfor %}
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
+    <button class="w-100 btn btn-lg btn-primary mb-2" type="submit">Sign Up</button>
+    <a href="{% url 'login' %}">Already have account? Logging in.</a>
     <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
   </form>
 </main>
