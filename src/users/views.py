@@ -1,16 +1,10 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse
 from django.http.request import HttpRequest
-from users.forms import RegisterForm , LoginForm
-from users.models import UsersORM , Users
-from users.utils import encrtypt_password, verify_password, login_required
+from django.shortcuts import redirect, render
+from django.urls import reverse
 
-
-
-@login_required
-def dashboard(request: HttpRequest) -> render:
-    return render(request, "dashboard/index.html")
-
+from users.forms import LoginForm, RegisterForm
+from users.models import Users, UsersORM
+from users.utils import encrtypt_password, verify_password
 
 
 def login(request: HttpRequest) -> render:
@@ -48,3 +42,10 @@ def register(request: HttpRequest) -> render:
             
 
     return render(request, "auth/register.html", {"form": form})
+
+def logout(request: HttpRequest) -> redirect:
+    if request.session.get("user_id"):
+        del request.session["user_id"]
+    return redirect("login")
+    
+
