@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}Diary Book - Login{% endblock %} 
+{% extends "base.html" %} {% block title %}Diary Book {% endblock %} 
 {% load static%} {% block head %}
 <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
 {% endblock %} {% block content %}
@@ -30,7 +30,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">New</a>
+            <a class="nav-link" href="{% url 'dashboard_add' %}">New</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled">List</a>

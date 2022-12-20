@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http.request import HttpRequest
 from users.utils import login_required
+from .forms import NewDiary
 
 @login_required
 def dashboard(request: HttpRequest) -> render:
@@ -9,7 +10,10 @@ def dashboard(request: HttpRequest) -> render:
 
 @login_required
 def add(request: HttpRequest) -> render:
-    pass
+    form = NewDiary()
+    
+    
+    return render(request, "dashboard/new.html", {"form" : form})
 
 
 @login_required

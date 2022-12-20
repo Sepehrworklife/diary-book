@@ -1,0 +1,12 @@
+{% extends "dashboard/base.html" %}
+{% block container %}
+<main class="form-signin w-100 m-auto">
+    <form >
+      <h2 class="h3 mb-3 fw-normal">New Diary</h2>
+      {% for field in form %}
+      {{field}}
+      {% endfor %}
+      <button class="w-100 btn btn-lg btn-primary mb-2" type="submit">Save</button>
+    </form>
+  </main>
+{% endblock %}
