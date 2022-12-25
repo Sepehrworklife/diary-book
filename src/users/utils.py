@@ -20,7 +20,7 @@ def verify_password(password: str, encrypted_password: str) -> bool:
 def login_required(func):
     @wraps(func)
     def wrapper(request, *args, **kwrags):
-        if request.session.get("user_id"):
+        if request.session.get("user"):
             return func(request, *args, **kwrags)
         return redirect("login")
     return wrapper

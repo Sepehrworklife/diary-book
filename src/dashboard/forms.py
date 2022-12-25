@@ -5,18 +5,18 @@ class NewDiary(forms.Form):
         max_length=255,
         label="",
         widget=forms.TextInput(
-            attrs={"class": "form-control form-control-lg", "placeholder": "Title"}
+            attrs={"style": "background-color: transparent; width:100%; border: 0; outline: 0;text-align: center; font-size: 2rem;padding: 10px 24px;", "placeholder": "Title"}
         )
     )
     content = forms.CharField(
         label ="",
         widget= forms.Textarea (
-            attrs = {"class": "form-control form-control-lg", "placeholder": "Content"}
+            attrs = {"placeholder": "Content", "id": "content", "class": "d-none"}
         ),
     )
     date = forms.DateTimeField(
         label ="",
         widget=forms.DateTimeInput(
-            attrs={"class" : "form-control form-control-lg", "placeholder" : "time"}
+            attrs={"style" : "background-color: transparent; border: 0; outline: 0; font-size: 1rem; padding: 10px 24px;", "placeholder" : "Time", "type": "date"}
         )
     )
