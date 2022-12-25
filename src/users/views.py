@@ -1,4 +1,5 @@
 from django.http.request import HttpRequest
+import json
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
@@ -15,8 +16,8 @@ def login(request: HttpRequest) -> render:
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
             user = UsersORM().get(email=email)
-            if verify_password(password, user.password):
-                request.session["user_id"] = user.id
+            if user and verify_password(password, user.password):
+                request.session["user"] = user.email
                 return redirect("dashboard")
             else:
                 form.add_error("email","email or password incorrect")

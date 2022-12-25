@@ -1,0 +1,52 @@
+{% extends "dashboard/base.html" %} {% load static %} {% block container %}
+<main class="form-signin w-100 m-auto">
+  <form method="POST" id="new-form">
+    {% csrf_token %}
+    <h2 class="h3 mb-3 fw-normal">New Diary</h2>
+    {% if form.errors %}
+    <div class="alert alert-danger">
+    {% for field in form %}
+      {% if field.errors %} {{ field.errors }} {% endif %}
+    {% endfor %}
+    </div>
+    {% endif %}
+    <div class="p-5" style="border-radius: 1rem; background-color: #eef5fa">
+      {{ form.title }}
+      <div id="editorjs" class="py-5 bg-white rounded shadow my-3"></div>
+      {{ form.date }} {{ form.content }}
+      <button
+        class="w-100 btn btn-lg btn-primary my-2"
+        type="submit"
+        onclick="saveEditorData(event)"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</main>
+{% endblock %} {% block footer %}
+<script src="{% static 'js/editor.js' %}"></script>
+<script src="{% static 'js/editorparser.js' %}"></script>
+<script src="{% static 'js/header@latest.js' %}"></script>
+<script type="text/javascript">
+  const editor = new EditorJS({
+    holder: "editorjs",
+    tools: {
+      header: Header,
+    },
+  });
+  function saveEditorData(e) {
+    e.preventDefault();
+    const parser = new edjsParser();
+    editor
+      .save()
+      .then((data) => {
+        const finalData = parser.parse(data);
+        document.getElementById("content").textContent = finalData;
+      })
+      .catch((error) => alert(error))
+      .finally(() => document.getElementById("new-form").submit());
+    
+  }
+</script>
+{% endblock %}
