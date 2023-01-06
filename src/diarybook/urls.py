@@ -23,5 +23,6 @@ urlpatterns = [
     path("auth/logout/", logout, name="logout"),
     path("dashboard", dashboard, name="dashboard"),
     path("dashboard/new", dashboard_add, name="dashboard_add"),
-    path("dashboard/list", dashboard_list, name="dashboard_list")
+    path("dashboard/list", dashboard_list, name="dashboard_list"),
+    
 ]

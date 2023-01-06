@@ -1,0 +1,15 @@
+{% extends "dashboard/base.html" %}
+{% block container %}
+<h1>Diaries List</h1>
+<ul>
+    {% for diary in diarys %}
+    <li>
+        <a href="#">
+           {{diary.title}}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

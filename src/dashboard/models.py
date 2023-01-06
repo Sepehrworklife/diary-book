@@ -12,6 +12,9 @@ class Diary(models.Model):
     date = models.DateTimeField(null=True)
     created_date = models.DateTimeField(auto_now=True)
     
+    def __str__(self):
+        return f"{self.title}"
+    
 
 class DiaryORM:
 
@@ -37,6 +40,11 @@ class DiaryORM:
         except Diary.DoesNotExist:
             diary = False
         return diary
-
-
+    
+    def user_diary(self , user):
+        
+        diarys = Diary.objects.filter(user=user).all()
+        return diarys
+    
+    
 

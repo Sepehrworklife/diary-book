@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.http.request import HttpRequest
 from users.utils import login_required
 from .forms import NewDiary
-from .models import DiaryORM
-from users.models import UsersORM
+from .models import DiaryORM 
+from users.models import UsersORM , Users 
 
 
 @login_required
@@ -31,5 +31,10 @@ def add(request: HttpRequest) -> render:
 
 
 @login_required
-def list(request: HttpRequest) -> render:
-    pass
+def list(request: HttpRequest ) -> render:
+    user = request.session['user']
+    userid = Users.objects.get(email = user)
+    diarys = DiaryORM().user_diary(user = userid)
+    return render(request ,'dashboard/list.html', {
+        "diarys" : diarys
+    })
