@@ -1,15 +1,46 @@
 {% extends "dashboard/base.html" %}
 {% block container %}
-<h1>Diaries List</h1>
-<ul>
-    {% for diary in diarys %}
-    <li>
-        <a href="#">
-           {{diary.title}}
-        </a>
-    </li>
-    {% endfor %}
-</ul>
+<h1  style="
+padding-bottom: 1rem">Diaries List</h1>
+<table class="table table-hover"
+      >
+    <thead>
+      <tr>
+        
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for diary in page_obj %}
+        <tr>
+        
+        <td>{{diary.title}}</td>
+        <td>{{diary.content}}</td>
+        <td>{{diary.date}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 
 
 {% endblock %}

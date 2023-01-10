@@ -2,6 +2,7 @@ from django.db import models
 import datetime
 from users.models import Users
 from dataclasses import dataclass
+from django.views.generic import ListView
 
 # Create your models here.
 class Diary(models.Model):
@@ -14,6 +15,10 @@ class Diary(models.Model):
     
     def __str__(self):
         return f"{self.title}"
+    
+class DiaryListView(ListView):
+    paginate_by = 5
+    model = Diary    
     
 
 class DiaryORM:
@@ -43,7 +48,7 @@ class DiaryORM:
     
     def user_diary(self , user):
         
-        diarys = Diary.objects.filter(user=user).all()
+        diarys = Diary.objects.filter(user=user).all().order_by('-date')
         return diarys
     
     
