@@ -1,0 +1,17 @@
+{% extends "dashboard/base.html" %} {% block container %}
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><strong>WATCH OUT!</strong> Are you sure?</h5>
+    <p class="card-text">
+      By deleting this diary you will not have it again, there is no backup for
+      it.
+    </p>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Delete" class="btn btn-danger" />
+      <a href="{% url 'dashboard' %}" class="btn btn-light">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

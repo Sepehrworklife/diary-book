@@ -1,0 +1,45 @@
+{% extends "dashboard/base.html" %} {% block container %}
+<div class="row">
+<button id="dark-mode" class="btn btn-light mb-4" onclick="darkMode()">READING MODE</button>
+<button id="light-mode" class="btn btn-dark mb-4 visually-hidden" onclick="lightMode()">LIGHT MODE</button>
+  <div class="col-9">
+    <h2>{{ diary.title }}</h2>
+  </div>
+  <div class="col-3 d-flex justify-content-end">
+    <div>
+      <a href="{{request.META.HTTP_REFERER|escape}}" class="btn btn-light">Go Back</a>
+      <a href="" class="btn btn-light">Edit</a>
+    </div>
+  </div>
+</div>
+<hr style="border-top: 1px solid rgba(0,0,0,0.4)" >
+{{ diary.content|safe }}
+<hr style="border-top: 1px solid rgba(0,0,0,0.4)" >
+<p class="text-center text-secondary">{{diary.created_date}}</p>
+
+{% endblock %}
+{% block footer %}
+<script type="text/javascript">
+    function darkMode(){
+        document.body.style.backgroundColor = "#222";
+        const btns = document.querySelectorAll(".btn-light");
+        btns.forEach((btn) => {
+            btn.classList.remove("btn-light");
+            btn.classList.add("btn-dark");
+        });
+        document.getElementById("dark-mode").classList.add("visually-hidden")
+        document.getElementById("light-mode").classList.remove("visually-hidden")
+    }
+    function lightMode(){
+        document.body.style.backgroundColor = "#fff";
+        const btns = document.querySelectorAll(".btn-dark");
+        btns.forEach((btn) => {
+            btn.classList.remove("btn-dark");
+            btn.classList.add("btn-light");
+        });
+        document.getElementById("light-mode").classList.add("visually-hidden")
+        document.getElementById("dark-mode").classList.remove("visually-hidden")
+
+    }
+</script>
+{% endblock %}
