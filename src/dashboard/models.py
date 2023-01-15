@@ -1,4 +1,5 @@
 from django.db import models
+from typing import List
 import datetime
 from users.models import Users
 from dataclasses import dataclass
@@ -46,10 +47,15 @@ class DiaryORM:
             diary = False
         return diary
     
+    def get_user_diaries_with_limit(self, user, limit: int) -> List:
+        return Diary.objects.filter(user=user).all().order_by('-date')[:limit]
+    
     def user_diary(self , user):
-        
         diarys = Diary.objects.filter(user=user).all().order_by('-date')
         return diarys
+    
+    def delete(self, id):
+        return Diary.objects.filter(id=id).delete()
     
     
 

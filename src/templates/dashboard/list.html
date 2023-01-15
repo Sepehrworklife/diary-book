@@ -2,14 +2,19 @@
 {% block container %}
 <h1  style="
 padding-bottom: 1rem">Diaries List</h1>
+{% if request.GET.delete %}
+<div class="alert alert-success">
+  <strong>SUCCESS!</strong> Diary deleted successfully.
+</div>
+{% endif %}
 <table class="table table-hover"
       >
     <thead>
       <tr>
         
         <th scope="col">Title</th>
-        <th scope="col">Content</th>
         <th scope="col">Date</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -17,8 +22,12 @@ padding-bottom: 1rem">Diaries List</h1>
         <tr>
         
         <td>{{diary.title}}</td>
-        <td>{{diary.content}}</td>
-        <td>{{diary.date}}</td>
+        <td>{{diary.created_date}}</td>
+        <td>
+          <a href="{% url 'dashboard_view' id=diary.id %}" class="btn btn-light btn-sm">VIEW</a>
+          <a href="#" class="btn btn-primary btn-sm">EDIT</a>
+          <a href="{% url 'dashboard_delete' id=diary.id %}" class="btn btn-danger btn-sm">DELETE</a>
+        </td>
       </tr>
       {% endfor %}
     </tbody>

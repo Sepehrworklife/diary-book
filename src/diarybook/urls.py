@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.urls import path
 from users.views import login, register, logout
-from dashboard.views import dashboard, add as dashboard_add, list as dashboard_list
+from dashboard.views import dashboard, add as dashboard_add, list as dashboard_list, delete as dashboard_delete, view as dashboard_view
 
 urlpatterns = [
     path("auth/login/", login, name="login"),
@@ -24,5 +24,7 @@ urlpatterns = [
     path("dashboard", dashboard, name="dashboard"),
     path("dashboard/new", dashboard_add, name="dashboard_add"),
     path("dashboard/list", dashboard_list, name="dashboard_list"),
+    path("dashboard/delete/<int:id>", dashboard_delete, name="dashboard_delete"),
+    path("dashboard_view/<int:id>", dashboard_view, name="dashboard_view")
     
 ]
